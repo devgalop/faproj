@@ -17,7 +17,7 @@ public class Bill
     public double IVA { get; set; }
     public double Total { get; set; }
     public double DiscountPercent { get; set; }
-    public int ReparationId { get; set; }
+    public int RevisionId { get; set; }
     public List<BillDetail> Details { get; set; } = null!;
-    public Reparation ReparationAssociated { get; set; } = null!;
+    public Reparation Revision{ get; set; } = null!;
 }

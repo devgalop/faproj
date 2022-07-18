@@ -13,4 +13,5 @@ public class Car
     public string Brand { get; set; } = string.Empty;
     public int OwnerId { get; set; }
     public Customer Owner { get; set; } = null!;
+    public List<Reparation> Revisions { get; set; } = null!;
 }
