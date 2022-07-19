@@ -1,4 +1,5 @@
 using FamiAutos.API.Data;
+using FamiAutos.API.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBFA"));
 });
+builder.Services.AddScoped<IAccountingRepository,AccountingRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
