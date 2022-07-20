@@ -28,7 +28,7 @@ public class AccountingRepository : IAccountingRepository
     public async Task<IEnumerable<MoneyFlow>> GetMoneyFlowsByDate(DateTime date)
     {
         return await _dataContext.MoneyFlows
-                .Where(flow => flow.CreatedAt == date).ToListAsync();
+                .Where(flow => flow.CreatedAt.Day == date.Day && flow.CreatedAt.Month == date.Month && flow.CreatedAt.Year == date.Year).ToListAsync();
     }
 
     public async Task<IEnumerable<MoneyFlow>> GetMoneyFlowsByMonth(int month)

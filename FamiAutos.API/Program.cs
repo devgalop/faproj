@@ -1,16 +1,18 @@
 using FamiAutos.API.Data;
 using FamiAutos.API.Data.Repositories;
+using FamiAutos.API.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DBFA"));
 });
-builder.Services.AddScoped<IAccountingRepository,AccountingRepository>();
+builder.Services.AddScoped<IAccountingRepository,AccountingRepository>()
+                .AddScoped<IMapperHelper,MapperHelper>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
