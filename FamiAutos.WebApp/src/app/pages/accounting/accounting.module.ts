@@ -5,11 +5,13 @@ import { AccountingRoutingModule } from './accounting-routing.module';
 import { AccountingComponent } from './accounting.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from '../../material.module';
+import { CreateAccountingComponent } from './create-accounting/create-accounting.component';
 
 
 @NgModule({
   declarations: [
-    AccountingComponent
+    AccountingComponent,
+    CreateAccountingComponent
   ],
   imports: [
     CommonModule,

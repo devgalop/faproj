@@ -5,37 +5,7 @@
     </button>
     <div class="add-form">
         <ng-container *ngIf="showAddForm">
-            <form (ngSubmit)="saveAccounting()" [formGroup]="addForm">
-                <mat-form-field class="form-element datepicker" appearance="legacy">
-                    <mat-label>Seleccione la fecha</mat-label>
-                    <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" required formControlName="datePicked">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <mat-form-field class="form-element form-element-text" appearance="legacy">
-                    <mat-label>Descripción Ingreso/Egreso</mat-label>
-                    <input matInput placeholder="Descripcion" required formControlName="description">
-                </mat-form-field>
-                <mat-form-field class="form-element" appearance="legacy" floatLabel="always">
-                    <mat-label>Valor</mat-label>
-                    <input matInput type="number" class="" placeholder="0" required formControlName="value">
-                    <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
-                <mat-form-field class="form-element" appearance="legacy">
-                    <mat-label>Tipo</mat-label>
-                    <mat-select required formControlName="accountingType">
-                        <mat-option value="0">Ingreso</mat-option>
-                        <mat-option value="1">Egreso</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <button type="submit" 
-                        mat-flat-button 
-                        class="btn form-element save-btn"
-                        [disabled]="addForm.invalid">
-                    <mat-icon>save</mat-icon>
-                    Guardar
-                </button>
-            </form>
+            <app-create-accounting (addAccountingClick) = "saveAccounting($event)"></app-create-accounting>
         </ng-container>
     </div>
 </ng-container>
