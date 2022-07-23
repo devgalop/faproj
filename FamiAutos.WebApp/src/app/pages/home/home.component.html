@@ -2,9 +2,10 @@
     <mat-card class="card"  
         *ngFor="let page of pages"
     >
-        <mat-card-title>
-        {{page.name}}
-        </mat-card-title>
+        <mat-card-title-group>
+            <mat-card-title>{{page.name}}</mat-card-title>
+            <mat-icon>{{page.imageUrl}}</mat-icon>
+        </mat-card-title-group>
         <mat-card-content>
         {{page.description}}
         </mat-card-content>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AccountingRoutingModule } from './accounting-routing.module';
 import { AccountingComponent } from './accounting.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from '../../material.module';
 
 
@@ -13,7 +14,9 @@ import { MaterialModule } from '../../material.module';
   imports: [
     CommonModule,
     MaterialModule,
-    AccountingRoutingModule
+    FormsModule,
+    AccountingRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountingModule { }
