@@ -1,10 +1,10 @@
 <ng-container >
-    <button class="btn add-btn" (click) = "AddAccounting()">
+    <button class="btn add-btn" (click) = "showForm()">
         <mat-icon>library_add</mat-icon>
         Ingreso/Egreso
     </button>
     <div class="add-form">
-        <ng-container *ngIf="isAddingAccounting">
+        <ng-container *ngIf="showAddForm">
             <form (ngSubmit)="saveAccounting()" [formGroup]="addForm">
                 <mat-form-field class="form-element datepicker" appearance="legacy">
                     <mat-label>Seleccione la fecha</mat-label>

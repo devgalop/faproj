@@ -58,3 +58,8 @@ mat-divider {
 .footer-bar{
     justify-content:center;
 }
+
+.copyleft {
+    display:inline-block;
+    transform: rotate(180deg);
+}
