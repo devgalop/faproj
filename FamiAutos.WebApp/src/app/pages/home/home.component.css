@@ -1,0 +1,24 @@
+section.modules{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.card
+{
+    margin:5px;
+    min-height: 180px;
+    max-width: 400px;
+    min-width: 400px;
+    height: 100%;
+    background-color: white
+}
+
+.btn-goTo{
+    background-color: #EB1D36;
+    color:white
+}
+
+button{ width: 100%;}

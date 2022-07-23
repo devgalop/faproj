@@ -1,0 +1,19 @@
+<section class="modules">
+    <mat-card class="card"  
+        *ngFor="let page of pages"
+    >
+        <mat-card-title>
+        {{page.name}}
+        </mat-card-title>
+        <mat-card-content>
+        {{page.description}}
+        </mat-card-content>
+        <mat-card-actions>
+        <button mat-flat-button class="btn-goTo"
+                (click) ="goTo(page.route)"> 
+                Ir <mat-icon>input icon</mat-icon>
+        </button>
+        </mat-card-actions>
+    </mat-card>
+</section>
+
