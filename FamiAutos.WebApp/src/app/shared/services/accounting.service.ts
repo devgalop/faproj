@@ -23,8 +23,20 @@ export class AccountingService {
     );
   }
 
-  getAccountingByYear(year: Number):Observable<Accounting[]>{
+  getAccountingByYear(year: number):Observable<Accounting[]>{
     this.complementPath = 'GetFlowByYear/'+ year;
+    return this._httpClient.get<Accounting[]>(`${this.apiURL}/${this.complementPath}`).pipe(
+      catchError(this.handleError));
+  }
+
+  getAccountingByMonth(month: number):Observable<Accounting[]>{
+    this.complementPath = 'GetFlowByMonth/'+ month;
+    return this._httpClient.get<Accounting[]>(`${this.apiURL}/${this.complementPath}`).pipe(
+      catchError(this.handleError));
+  }
+
+  getAccountingByDate(year: number, month: number, day: number): Observable<Accounting[]>{
+    this.complementPath = 'GetFlowByDate/'+ year + '/' + month + '/' + day;
     return this._httpClient.get<Accounting[]>(`${this.apiURL}/${this.complementPath}`).pipe(
       catchError(this.handleError));
   }

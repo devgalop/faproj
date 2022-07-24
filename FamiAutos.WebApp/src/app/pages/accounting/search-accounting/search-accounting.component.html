@@ -1,0 +1,23 @@
+<form (ngSubmit)="searchReportAccounting()" [formGroup]="searchForm">
+    <mat-form-field class="form-element datepicker" appearance="legacy">
+        <mat-label>Seleccione la fecha</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" required formControlName="datePicked">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Tipo Busqueda</mat-label>
+        <mat-select required formControlName="searchType">
+            <mat-option value="byDay">Dia</mat-option>
+            <mat-option value="byMonth">Mes</mat-option>
+            <mat-option value="byYear">Año</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button type="submit" 
+            mat-flat-button 
+            class="btn form-element"
+            [disabled]="searchForm.invalid">
+        <mat-icon>search</mat-icon>
+        Buscar
+    </button>
+</form>

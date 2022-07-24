@@ -9,6 +9,7 @@ import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.inte
 export class DashboardAccountingComponent implements OnInit {
 
   @Input() accountingRows!:Accounting[]
+  @Input() total!:number;
   displayedColumns= ['Fecha', 'Descripcion', 'Tipo', 'Valor', 'Acciones']
   constructor() { }
 

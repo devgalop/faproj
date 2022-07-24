@@ -1,9 +1,9 @@
 <div class="menu-container">
-    <button class="btn add-btn" (click) = "showForm()">
+    <button class="btn add-btn" (click) = "openAddForm()">
         <mat-icon>library_add</mat-icon>
         Ingreso/Egreso
     </button>
-    <button class="btn report-btn" (click) = "showTable()">
+    <button class="btn report-btn" (click) = "openSearchForm()">
         <mat-icon>search</mat-icon>
         Reporte
     </button>
@@ -15,10 +15,18 @@
             <app-create-accounting (addAccountingClick) = "saveAccounting($event)"></app-create-accounting>
         </ng-container>
     </div>
+
+    <div class="search-form">
+        <ng-container *ngIf="showSearchForm">
+            <app-search-accounting (searchAccountingClick) = "searchAccounting($event)"></app-search-accounting>
+        </ng-container>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="showDashboardTable">
     <div class="table-display">
-        <app-dashboard-accounting [accountingRows]="existingAccounting"></app-dashboard-accounting>
+        <app-dashboard-accounting [accountingRows]="existingAccounting"
+                                    [total]="total">
+        </app-dashboard-accounting>
     </div>
 </ng-container>

@@ -7,13 +7,15 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MaterialModule } from '../../material.module';
 import { CreateAccountingComponent } from './create-accounting/create-accounting.component';
 import { DashboardAccountingComponent } from './dashboard-accounting/dashboard-accounting.component';
+import { SearchAccountingComponent } from './search-accounting/search-accounting.component';
 
 
 @NgModule({
   declarations: [
     AccountingComponent,
     CreateAccountingComponent,
-    DashboardAccountingComponent
+    DashboardAccountingComponent,
+    SearchAccountingComponent
   ],
   imports: [
     CommonModule,
