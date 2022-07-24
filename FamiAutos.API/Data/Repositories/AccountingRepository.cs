@@ -28,19 +28,25 @@ public class AccountingRepository : IAccountingRepository
     public async Task<IEnumerable<MoneyFlow>> GetMoneyFlowsByDate(DateTime date)
     {
         return await _dataContext.MoneyFlows
-                .Where(flow => flow.CreatedAt.Day == date.Day && flow.CreatedAt.Month == date.Month && flow.CreatedAt.Year == date.Year).ToListAsync();
+                .Where(flow => flow.CreatedAt.Day == date.Day && flow.CreatedAt.Month == date.Month && flow.CreatedAt.Year == date.Year)
+                .OrderBy(flow => flow.CreatedAt)
+                .ToListAsync();
     }
 
     public async Task<IEnumerable<MoneyFlow>> GetMoneyFlowsByMonth(int month)
     {
         return await _dataContext.MoneyFlows
-                .Where(flow => flow.CreatedAt.Month == month).ToListAsync();
+                .Where(flow => flow.CreatedAt.Month == month)
+                .OrderBy(flow => flow.CreatedAt)
+                .ToListAsync();
     }
 
     public async Task<IEnumerable<MoneyFlow>> GetMoneyFlowsByYear(int year)
     {
         return await _dataContext.MoneyFlows
-                .Where(flow => flow.CreatedAt.Year == year).ToListAsync();
+                .Where(flow => flow.CreatedAt.Year == year)
+                .OrderBy(flow => flow.CreatedAt)
+                .ToListAsync();
     }
 
     public async Task ModifyMoneyFlow(MoneyFlow flow)
