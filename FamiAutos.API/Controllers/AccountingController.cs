@@ -71,7 +71,7 @@ public class AccountingController : ControllerBase
     }
 
     [HttpGet("GetFlowByMonth/{MM}")]
-    public async Task<IActionResult> GetFlowByDate(int MM)
+    public async Task<IActionResult> GetFlowByMonth(int MM)
     {
         try
         {
