@@ -1,11 +1,24 @@
-<ng-container >
+<div class="menu-container">
     <button class="btn add-btn" (click) = "showForm()">
         <mat-icon>library_add</mat-icon>
         Ingreso/Egreso
     </button>
+    <button class="btn report-btn" (click) = "showTable()">
+        <mat-icon>search</mat-icon>
+        Reporte
+    </button>
+</div>
+
+<ng-container >
     <div class="add-form">
         <ng-container *ngIf="showAddForm">
             <app-create-accounting (addAccountingClick) = "saveAccounting($event)"></app-create-accounting>
         </ng-container>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showDashboardTable">
+    <div class="table-display">
+        <app-dashboard-accounting [accountingRows]="existingAccounting"></app-dashboard-accounting>
     </div>
 </ng-container>

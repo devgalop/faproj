@@ -1,7 +1,7 @@
 export interface Accounting{
-    Id: Number;
-    Description: string;
-    CreatedAt: Date;
-    FlowType: Number;
-    Value: Number; 
+    id: number;
+    description: string;
+    createdAt: string;
+    flowType: number;
+    value: number; 
 }

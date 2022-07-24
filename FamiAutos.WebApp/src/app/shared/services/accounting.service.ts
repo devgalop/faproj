@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Accounting } from '../interfaces/accounting/accounting.interface';
 import { AddAccounting } from '../interfaces/accounting/addAccounting.interface';
 
 @Injectable({
@@ -20,6 +21,12 @@ export class AccountingService {
     return this._httpClient.post(`${this.apiURL}/${this.complementPath}`, data).pipe(
         catchError(this.handleError)
     );
+  }
+
+  getAccountingByYear(year: Number):Observable<Accounting[]>{
+    this.complementPath = 'GetFlowByYear/'+ year;
+    return this._httpClient.get<Accounting[]>(`${this.apiURL}/${this.complementPath}`).pipe(
+      catchError(this.handleError));
   }
 
   handleError(error: HttpErrorResponse) {

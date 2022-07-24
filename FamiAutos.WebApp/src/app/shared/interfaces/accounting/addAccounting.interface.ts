@@ -1,6 +1,6 @@
 export interface AddAccounting{
     Description: string;
     CreatedAt: Date;
-    FlowType: Number;
-    Value: Number; 
+    FlowType: number;
+    Value: number; 
 }

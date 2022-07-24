@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+            <th *ngFor="let column of displayedColumns">{{column}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-data" *ngFor="let row of accountingRows ">
+            <td>{{row.createdAt | date:'yyyy/MM/dd' }}</td>
+            <td>{{row.description}}</td>
+            <td>{{row.flowType == 0 ? 'Ingreso' : 'Egreso'}}</td>
+            <td>{{row.value | currency}}</td>
+            <td>
+                <button mat-flat-button class="btn btn-warning">
+                    <mat-icon>build</mat-icon>
+                </button>
+                <button mat-flat-button class="btn btn-danger">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
