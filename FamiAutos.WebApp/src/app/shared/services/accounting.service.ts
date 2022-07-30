@@ -41,6 +41,19 @@ export class AccountingService {
       catchError(this.handleError));
   }
 
+  modifyAccountingFlow(data: Accounting): Observable<any>{
+    this.complementPath = 'ModifyFlow'
+    return this._httpClient.put(`${this.apiURL}/${this.complementPath}`, data).pipe(
+        catchError(this.handleError)
+    );
+  }
+
+  deleteAccountingFlow(id:number):Observable<any>{
+    this.complementPath = 'DeleteFlow/'+ id;
+    return this._httpClient.delete(`${this.apiURL}/${this.complementPath}`).pipe(
+      catchError(this.handleError));
+  }
+
   handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
         console.error('A ocurrido un error:', error.error.message);

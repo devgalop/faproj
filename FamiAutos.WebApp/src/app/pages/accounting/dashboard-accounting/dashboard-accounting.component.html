@@ -15,15 +15,15 @@
         </thead>
         <tbody>
             <tr class="table-data" *ngFor="let row of accountingRows ">
-                <td>{{row.createdAt | date:'yyyy/MM/dd' }}</td>
+                <td>{{row.createdAt | date:'dd/MM/yyyy' }}</td>
                 <td>{{row.description}}</td>
                 <td>{{row.flowType == 0 ? 'Ingreso' : 'Egreso'}}</td>
                 <td>{{row.value | currency}}</td>
                 <td>
-                    <button mat-flat-button class="btn btn-warning">
+                    <button mat-flat-button class="btn btn-warning" (click)="OnUpdate(row)">
                         <mat-icon>build</mat-icon>
                     </button>
-                    <button mat-flat-button class="btn btn-danger">
+                    <button mat-flat-button class="btn btn-danger" (click)="OnDelete(row)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>
