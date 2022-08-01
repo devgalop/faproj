@@ -8,6 +8,7 @@ import { MaterialModule } from '../../material.module';
 import { CreateAccountingComponent } from './create-accounting/create-accounting.component';
 import { DashboardAccountingComponent } from './dashboard-accounting/dashboard-accounting.component';
 import { SearchAccountingComponent } from './search-accounting/search-accounting.component';
+import { UpdateAccountingComponent } from './update-accounting/update-accounting.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SearchAccountingComponent } from './search-accounting/search-accounting
     AccountingComponent,
     CreateAccountingComponent,
     DashboardAccountingComponent,
-    SearchAccountingComponent
+    SearchAccountingComponent,
+    UpdateAccountingComponent
   ],
   imports: [
     CommonModule,

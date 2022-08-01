@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.interface';
 import { AccountingService } from 'src/app/shared/services/accounting.service';
 
@@ -12,6 +12,7 @@ export class DashboardAccountingComponent implements OnInit {
 
   @Input() accountingRows!:Accounting[]
   @Input() total!:number;
+  @Output() updateAccountingRowClick = new EventEmitter<Accounting>();
   displayedColumns= ['Fecha', 'Descripcion', 'Tipo', 'Valor', 'Acciones']
 
   constructor(private readonly _accountingSvc : AccountingService) { }
@@ -21,7 +22,7 @@ export class DashboardAccountingComponent implements OnInit {
 
   OnUpdate(data: Accounting): void {
     console.log('Actualizar objeto: ' + JSON.stringify(data));
-    
+    this.updateAccountingRowClick.emit(data);
   }
 
   OnDelete(data: Accounting): void {

@@ -12,9 +12,12 @@ import { AccountingService } from 'src/app/shared/services/accounting.service';
 })
 export class AccountingComponent implements OnInit {
   existingAccounting!: Accounting[];
+  accountingSelected! : Accounting;
   showDashboardTable : boolean = false;
   showSearchForm: boolean = false;
   showAddForm: boolean = false;
+  showUpdateForm: boolean = false;
+  showButtons: boolean = true;
   total!:number;
   constructor(private readonly _accountingSvc : AccountingService) 
   { }
@@ -33,6 +36,23 @@ export class AccountingComponent implements OnInit {
     }
   }
 
+  openUpdateForm():void{
+    this.showUpdateForm = !this.showUpdateForm;
+    if(this.showDashboardTable){
+      this.showDashboardTable = !this.showDashboardTable;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+    if(this.showButtons){
+      this.showButtons = !this.showButtons;
+    }
+  }
+
+  showMainButtons(): void {
+    this.showButtons = !this.showButtons;
+  }
+
   showTable(): void {
     this.showDashboardTable = !this.showDashboardTable;
   }
@@ -43,6 +63,27 @@ export class AccountingComponent implements OnInit {
     this._accountingSvc.addAccountingFlow(data).subscribe();
     this.openAddForm();
     window.location.reload();
+  }
+
+  saveAccountingModifiedRow(data : Accounting):void{
+    console.log("Se modificará registro en BD:");
+    console.log(data);
+    this._accountingSvc.modifyAccountingFlow(data).subscribe();
+    this.openUpdateForm();
+    this.showMainButtons();
+    //window.location.reload();
+  }
+
+  updateAccountingRow(data : Accounting):void{
+    console.log("Se actualizará el dato "+ JSON.stringify(data));
+    this.accountingSelected = data;
+    this.openUpdateForm();
+  }
+
+  cancelUpdateAccounting(isCancelled:boolean):void{
+    console.log("Actualizacion cancelada");
+    this.openUpdateForm();
+    this.showMainButtons();
   }
 
   searchAccounting(data : SearchAccounting):void{

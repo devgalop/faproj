@@ -21,7 +21,7 @@ export class CreateAccountingComponent implements OnInit {
     this.addForm = this.initForm();
   }
 
-  public saveAccounting(): void {
+  saveAccounting(): void {
     this.addAccounting ={
       Description: this.addForm.controls['description'].value,
       CreatedAt: this.addForm.controls['datePicked'].value,

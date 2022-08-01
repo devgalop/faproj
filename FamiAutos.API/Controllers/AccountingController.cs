@@ -113,6 +113,7 @@ public class AccountingController : ControllerBase
             flowFound.Description = model.Description;
             flowFound.FlowType = (EAccountingType)model.FlowType;
             flowFound.Value = model.Value;
+            flowFound.CreatedAt = model.CreatedAt;
             await _repository.ModifyMoneyFlow(flowFound);
             return Ok(flowFound);
         }

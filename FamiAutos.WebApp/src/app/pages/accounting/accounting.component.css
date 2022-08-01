@@ -15,6 +15,7 @@
     display:flex;
     flex-wrap: wrap;
     margin: 16px 0px;
+    text-align:center;
 }
 
 .menu-container{
@@ -22,10 +23,6 @@
 }
 
 .table-display{
-    text-align:center;
-}
-
-.add-form{
     text-align:center;
 }
 
