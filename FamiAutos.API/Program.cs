@@ -10,6 +10,7 @@ logger.Debug("init main");
 
 try
 {
+    var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Services.AddControllers();
@@ -27,11 +28,19 @@ try
                     .AddScoped<IMapperHelper,MapperHelper>();
     builder.Services.AddCors(options =>
     {
-        options.AddPolicy(name: "MyCors", builder =>
+        options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
         {
             builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost") 
             .AllowAnyHeader().AllowAnyMethod();
         });
+        options.AddPolicy(MyAllowSpecificOrigins,
+                        policy =>
+                        {
+                            policy.WithOrigins("http://localhost:4200",
+                                                "http://localhost:5300")
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod();
+                        });
     }
     );
     builder.Services.AddEndpointsApiExplorer();
@@ -44,7 +53,7 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
-    app.UseCors("MyCors");
+    app.UseCors(MyAllowSpecificOrigins);
     app.UseHttpsRedirection();
 
     app.UseAuthorization();
