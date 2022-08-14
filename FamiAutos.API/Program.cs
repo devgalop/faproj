@@ -25,7 +25,9 @@ try
         options.UseSqlServer(builder.Configuration.GetConnectionString("DBFA"));
     });
     builder.Services.AddScoped<IAccountingRepository,AccountingRepository>()
-                    .AddScoped<IMapperHelper,MapperHelper>();
+                    .AddScoped<IMapperHelper,MapperHelper>()
+                    .AddScoped<ICustomerRepository,CustomerRepository>();
+    
     builder.Services.AddCors(options =>
     {
         options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
