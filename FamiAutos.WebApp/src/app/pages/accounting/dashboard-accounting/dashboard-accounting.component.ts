@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.interface';
 import { AccountingService } from 'src/app/shared/services/accounting.service';
 
@@ -15,7 +16,7 @@ export class DashboardAccountingComponent implements OnInit {
   @Output() updateAccountingRowClick = new EventEmitter<Accounting>();
   displayedColumns= ['Fecha', 'Descripcion', 'Tipo', 'Valor', 'Acciones']
 
-  constructor(private readonly _accountingSvc : AccountingService) { }
+  constructor(private readonly _accountingSvc : AccountingService, private readonly _router : Router) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,8 @@ export class DashboardAccountingComponent implements OnInit {
     console.log('Eliminar objeto: ' + JSON.stringify(data));
     if (confirm('Esta seguro que desea elminar este registro?')) {
       this._accountingSvc.deleteAccountingFlow(data.id).subscribe();
-      window.location.reload();
+      this._router.navigate(['home']);
+      //window.location.reload();
     }
   }
 

@@ -62,7 +62,7 @@ export class AccountingComponent implements OnInit {
     console.log(data);
     this._accountingSvc.addAccountingFlow(data).subscribe();
     this.openAddForm();
-    window.location.reload();
+    //window.location.reload();
   }
 
   saveAccountingModifiedRow(data : Accounting):void{

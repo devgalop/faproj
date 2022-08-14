@@ -4,13 +4,15 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Accounting } from '../interfaces/accounting/accounting.interface';
 import { AddAccounting } from '../interfaces/accounting/addAccounting.interface';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 
 export class AccountingService {
-  private apiURL = '/api/Accounting';
+  private baseApiURL: string = environment.APIUrl;
+  private apiURL = this.baseApiURL + '/api/Accounting';
   private complementPath!: string;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
@@ -43,14 +45,14 @@ export class AccountingService {
 
   modifyAccountingFlow(data: Accounting): Observable<any>{
     this.complementPath = 'ModifyFlow'
-    return this._httpClient.put(`${this.apiURL}/${this.complementPath}`, data).pipe(
+    return this._httpClient.post(`${this.apiURL}/${this.complementPath}`, data).pipe(
         catchError(this.handleError)
     );
   }
 
   deleteAccountingFlow(id:number):Observable<any>{
     this.complementPath = 'DeleteFlow/'+ id;
-    return this._httpClient.delete(`${this.apiURL}/${this.complementPath}`).pipe(
+    return this._httpClient.get(`${this.apiURL}/${this.complementPath}`).pipe(
       catchError(this.handleError));
   }
 
