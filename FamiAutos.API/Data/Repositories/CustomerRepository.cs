@@ -19,18 +19,21 @@ public class CustomerRepository : ICustomerRepository
 
     public async Task<Customer?> GetCustomer(int id){
         return await _dataContext.Customers
+                                    .Include("Cars")
                                     .Where(customer => customer.Id == id)
                                     .FirstOrDefaultAsync();
     }
 
     public async Task<Customer?> GetCustomerByNit(string nit){
         return await _dataContext.Customers
+                                    .Include("Cars")
                                     .Where(customer => customer.Nit == nit)
                                     .FirstOrDefaultAsync();
     }
 
     public async Task<Customer?> GetCustomerByEmail(string email){
         return await _dataContext.Customers
+                                    .Include("Cars")
                                     .Where(customer => customer.Email == email)
                                     .FirstOrDefaultAsync();
     }

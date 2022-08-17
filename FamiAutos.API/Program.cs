@@ -26,7 +26,8 @@ try
     });
     builder.Services.AddScoped<IAccountingRepository,AccountingRepository>()
                     .AddScoped<IMapperHelper,MapperHelper>()
-                    .AddScoped<ICustomerRepository,CustomerRepository>();
+                    .AddScoped<ICustomerRepository,CustomerRepository>()
+                    .AddScoped<ICarRepository,CarRepository>();
     
     builder.Services.AddCors(options =>
     {
