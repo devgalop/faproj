@@ -27,7 +27,8 @@ try
     builder.Services.AddScoped<IAccountingRepository,AccountingRepository>()
                     .AddScoped<IMapperHelper,MapperHelper>()
                     .AddScoped<ICustomerRepository,CustomerRepository>()
-                    .AddScoped<ICarRepository,CarRepository>();
+                    .AddScoped<ICarRepository,CarRepository>()
+                    .AddScoped<IReparationRepository,ReparationRepository>();
     
     builder.Services.AddCors(options =>
     {

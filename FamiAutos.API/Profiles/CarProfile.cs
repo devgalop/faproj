@@ -13,5 +13,11 @@ public class CarProfile : Profile
 
         CreateMap<Car, UpdateCarModel>();
         CreateMap<UpdateCarModel, Car>();
+
+        CreateMap<Reparation, AddReparationModel>();
+        CreateMap<AddReparationModel, Reparation>();
+
+        CreateMap<Reparation, UpdateReparationModel>();
+        CreateMap<UpdateReparationModel, Reparation>();
     }
 }
