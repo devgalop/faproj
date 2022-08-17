@@ -13,5 +13,5 @@ public class BillDetail
     public int Quantity { get; set; }
     public double SubTotal { get; set; }
     public int BillId { get; set; }
-    public Bill Bill { get; set; } = null!;
+    //public Bill Bill { get; set; } = null!;
 }

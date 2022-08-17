@@ -65,7 +65,7 @@ public class CustomerController : ControllerBase
         }
     }
 
-    [HttpGet("GetCustomerByEmail/{nit}")]
+    [HttpGet("GetCustomerByNit/{nit}")]
     public async Task<IActionResult> GetCustomerByNit(string nit){
         try
         {

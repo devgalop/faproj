@@ -37,10 +37,10 @@ public class CarController : ControllerBase
             Car? carFound = await _carRepository.GetCar(model.Plaque);
             if(carFound != null) throw new Exception($"El auto con placas: {model.Plaque} ya se encuentra registrado en la base de datos.");
             Customer? customerFound = await _customerRepository.GetCustomer(model.OwnerId);
-            if(customerFound != null) throw new Exception($"El propietario con Id {model.OwnerId} NO se encuentra registrado en la base de datos");
+            if(customerFound == null) throw new Exception($"El propietario con Id {model.OwnerId} NO se encuentra registrado en la base de datos");
             Car carEntity = _mapperHelper.ConvertTo<Car,AddCarModel>(model);
             await _carRepository.AddCar(carEntity);
-            _logger.LogInformation($"Se registro el auto satisfactoriamente. {JsonConvert.SerializeObject(carEntity)}");
+            _logger.LogInformation($"Se registro el auto satisfactoriamente. {JsonConvert.SerializeObject(model)}");
             return Ok(carEntity);
         }
         catch (Exception ex)

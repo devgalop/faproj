@@ -27,8 +27,6 @@ public class CarRepository : ICarRepository
     public async Task<Car?> GetCar(string plaque)
     {
         return await _dataContext.Cars
-                            .Include("Customers")
-                            .Include("Reparations")
                             .Where(car => car.Plaque == plaque)
                             .FirstOrDefaultAsync();
     }

@@ -57,7 +57,7 @@ public class ReparationController : ControllerBase
             if(id <= 0 ) throw new ArgumentOutOfRangeException("Id no valido");
             Reparation? repartionFound = await _reparationRepository.GetReparation(id);
             if(repartionFound == null) return NotFound($"No existe ninguna reparación con id: {id}");
-            return Ok();
+            return Ok(repartionFound);
         }
         catch (Exception ex)
         {
