@@ -39,7 +39,8 @@ public class ReparationController : ControllerBase
             Reparation reparationEntity = _mapperHelper.ConvertTo<Reparation, AddReparationModel>(model);
             reparationEntity.CarId = carFound.Id;
             await _reparationRepository.CreateReparation(reparationEntity);
-            return Ok(reparationEntity);
+            ReparationModel reparation = _mapperHelper.ConvertTo<ReparationModel, Reparation>(reparationEntity);
+            return Ok(reparation);
         }
         catch (Exception ex)
         {
