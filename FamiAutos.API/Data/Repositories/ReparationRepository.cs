@@ -21,6 +21,7 @@ public class ReparationRepository : IReparationRepository
     public async Task<Reparation?> GetReparation(int id)
     {
         return await _dataContext.Reparations
+                        .Include(reparation => reparation.Car)
                         .Where(reparation => reparation.Id == id)
                         .FirstOrDefaultAsync();
     }

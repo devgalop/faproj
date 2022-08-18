@@ -55,8 +55,9 @@ public class CustomerController : ControllerBase
             if(string.IsNullOrEmpty(email)) throw new ArgumentException("Email invalido");
             Customer? customerFound = await _customerRepository.GetCustomerByEmail(email);
             if(customerFound == null) return NotFound($"El cliente con email {email} NO existe en la base de datos");
-            _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customerFound)}");
-            return Ok(customerFound);
+            CustomerModel customer = _mapperHelper.ConvertTo<CustomerModel, Customer?>(customerFound);
+            _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customer)}");
+            return Ok(customer);
         }
         catch (Exception ex)
         {
@@ -73,8 +74,9 @@ public class CustomerController : ControllerBase
             if(string.IsNullOrEmpty(nit)) throw new ArgumentException("Email invalido");
             Customer? customerFound = await _customerRepository.GetCustomerByNit(nit);
             if(customerFound == null) return NotFound($"El cliente con email {nit} NO existe en la base de datos");
-            _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customerFound)}");
-            return Ok(customerFound);
+            CustomerModel customer = _mapperHelper.ConvertTo<CustomerModel, Customer?>(customerFound);
+            _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customer)}");
+            return Ok(customer);
         }
         catch (Exception ex)
         {
@@ -96,8 +98,9 @@ public class CustomerController : ControllerBase
             customerFound.Cellphone = model.Cellphone;
             customerFound.Address = model.Address;
             await _customerRepository.UpdateCustomer(customerFound);
-            _logger.LogInformation($"El cliente ha sido modificado en la base de datos satisfactoriamente. {JsonConvert.SerializeObject(customerFound)}");
-            return Ok(customerFound);
+            CustomerModel customer = _mapperHelper.ConvertTo<CustomerModel, Customer?>(customerFound);
+            _logger.LogInformation($"El cliente ha sido modificado en la base de datos satisfactoriamente. {JsonConvert.SerializeObject(customer)}");
+            return Ok(customer);
         }
         catch (Exception ex)
         {

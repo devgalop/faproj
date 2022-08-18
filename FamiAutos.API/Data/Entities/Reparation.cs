@@ -12,5 +12,5 @@ public class Reparation
     public DateTime CreatedAt { get; set; } = DateTime.Now;
     public int GuaranteeMonths { get; set; }
     public int CarId { get; set; }
-    //public Car Car { get; set; } = null!;
+    public Car Car { get; set; } = null!;
 }

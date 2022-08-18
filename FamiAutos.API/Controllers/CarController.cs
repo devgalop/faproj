@@ -59,8 +59,9 @@ public class CarController : ControllerBase
             if(string.IsNullOrEmpty(plaque) ) throw new ArgumentException("No es una placa valida para consultar");
             Car? carFound = await _carRepository.GetCar(plaque);
             if(carFound == null) return NotFound($"El auto con placa {plaque} no existe en la base de datos");
-            _logger.LogInformation($"Se encontró el auto: {JsonConvert.SerializeObject(carFound)}");
-            return Ok(carFound);
+            CarModel car = _mapperHelper.ConvertTo<CarModel,Car>(carFound);
+            _logger.LogInformation($"Se encontró el auto: {JsonConvert.SerializeObject(car)}");
+            return Ok(car);
         }
         catch (Exception ex)
         {
@@ -81,8 +82,9 @@ public class CarController : ControllerBase
             carFound.Model = model.Model;
             carFound.Brand = model.Brand;
             await _carRepository.UpdateCar(carFound);
-            _logger.LogInformation($"Se ha actualizado el auto satisfactoriamente. {JsonConvert.SerializeObject(carFound)}");
-            return Ok(carFound);
+            CarModel car = _mapperHelper.ConvertTo<CarModel,Car>(carFound);
+            _logger.LogInformation($"Se ha actualizado el auto satisfactoriamente. {JsonConvert.SerializeObject(car)}");
+            return Ok(car);
         }
         catch (Exception ex)
         {

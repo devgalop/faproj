@@ -13,5 +13,11 @@ public class CustomerProfile : Profile
 
         CreateMap<UpdateCustomerModel, Customer>();
         CreateMap<Customer, UpdateCustomerModel>();
+
+        CreateMap<Customer, CustomerModel>();
+        CreateMap<CustomerModel, Customer>();
+
+        CreateMap<Customer, CarCustomerModel>();
+        CreateMap<CarCustomerModel, Customer>();
     }
 }

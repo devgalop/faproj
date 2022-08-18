@@ -57,7 +57,9 @@ public class ReparationController : ControllerBase
             if(id <= 0 ) throw new ArgumentOutOfRangeException("Id no valido");
             Reparation? repartionFound = await _reparationRepository.GetReparation(id);
             if(repartionFound == null) return NotFound($"No existe ninguna reparación con id: {id}");
-            return Ok(repartionFound);
+            ReparationModel reparation = _mapperHelper.ConvertTo<ReparationModel, Reparation?>(repartionFound);
+            _logger.LogInformation($"Se encontró la reparacion {JsonConvert.SerializeObject(reparation)}");
+            return Ok(reparation);
         }
         catch (Exception ex)
         {
@@ -76,8 +78,9 @@ public class ReparationController : ControllerBase
             Car? carFound = await _carRepository.GetCar(carPlaque);
             if(carFound == null) return NotFound($"El auto con placa {carPlaque} NO existe en la base de datos");
             List<Reparation> reparations = await _reparationRepository.GetReparationsByCar(carPlaque);
+            List<ReparationModel> reparationsResult = _mapperHelper.ConvertTo<List<ReparationModel>, List<Reparation>>(reparations);
             _logger.LogInformation($"Se encontraron {reparations.Count()} reparaciones en la base de datos para el auto con placas {carPlaque}");
-            return Ok(reparations);
+            return Ok(reparationsResult);
         }
         catch (Exception ex)
         {
@@ -87,20 +90,21 @@ public class ReparationController : ControllerBase
     }
 
     [HttpPost("UpdateReparation")]
-    public async Task<IActionResult> UpdateReparation([FromBody] UpdateReparationModel reparation)
+    public async Task<IActionResult> UpdateReparation([FromBody] UpdateReparationModel model)
     {
         try
         {
-            _logger.LogInformation($"Se actualizará la reparacion con id: {reparation.Id}");
-            if(reparation.Id <= 0) throw new ArgumentOutOfRangeException("Id invalido");
-            Reparation? reparationFound = await _reparationRepository.GetReparation(reparation.Id);
-            if(reparationFound == null) return NotFound($"La reparacion con Id {reparation.Id} NO existe en la base de datos");
-            reparationFound.Description = reparation.Description;
-            reparationFound.CreatedAt = reparation.CreatedAt;
-            reparationFound.GuaranteeMonths = reparation.GuaranteeMonths;
+            _logger.LogInformation($"Se actualizará la reparacion con id: {model.Id}");
+            if(model.Id <= 0) throw new ArgumentOutOfRangeException("Id invalido");
+            Reparation? reparationFound = await _reparationRepository.GetReparation(model.Id);
+            if(reparationFound == null) return NotFound($"La reparacion con Id {model.Id} NO existe en la base de datos");
+            reparationFound.Description = model.Description;
+            reparationFound.CreatedAt = model.CreatedAt;
+            reparationFound.GuaranteeMonths = model.GuaranteeMonths;
             await _reparationRepository.UpdateReparation(reparationFound);
-            _logger.LogInformation($"Se ha actualizado con exito: \n {JsonConvert.SerializeObject(reparationFound)}");
-            return Ok(reparationFound);
+            ReparationModel reparation = _mapperHelper.ConvertTo<ReparationModel, Reparation>(reparationFound);
+            _logger.LogInformation($"Se ha actualizado con exito: \n {JsonConvert.SerializeObject(reparation)}");
+            return Ok(reparation);
         }
         catch (Exception ex)
         {
