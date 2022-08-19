@@ -41,6 +41,7 @@ public class CustomerRepository : ICustomerRepository
     public async Task<Customer?> GetCustomerByCarPlaque(string plaque)
     {
         return await _dataContext.Customers
+                                    .Include(customer => customer.OwnCars)
                                     .Join(_dataContext.Cars,
                                         customer => customer.Id,
                                         cars => cars.OwnerId,
