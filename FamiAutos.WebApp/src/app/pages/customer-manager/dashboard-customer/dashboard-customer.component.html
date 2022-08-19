@@ -1,0 +1,52 @@
+<div class="title">
+    <span>Datos del Cliente:</span>
+</div>
+
+<div class="customer-info">
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Nombre:</mat-label>
+        <input matInput placeholder="Nombre" [(ngModel)]="customerSelected.name" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Nit/Cedula:</mat-label>
+        <input matInput placeholder="Nit" [(ngModel)]="customerSelected.nit" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Email:</mat-label>
+        <input matInput placeholder="ej. correo@prueba.com" [(ngModel)]="customerSelected.email" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Celular:</mat-label>
+        <input matInput placeholder="ej. 3023339910" [(ngModel)]="customerSelected.cellphone" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Direccion:</mat-label>
+        <input matInput placeholder="ej. Calle 1 # 2 - 3" [(ngModel)]="customerSelected.address" disabled>
+    </mat-form-field>
+    <button mat-flat-button class="btn btn-warning">
+        <mat-icon>build</mat-icon>
+        Actualizar Usuario
+    </button>
+</div>
+
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let column of displayedColumns">{{column}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-data" *ngFor="let row of customerSelected.ownCars ">
+                <td>{{row.plaque}}</td>
+                <td>{{row.model}}</td>
+                <td>{{row.brand}}</td>
+                <td>
+                    <button mat-flat-button class="btn btn-search" >
+                        <mat-icon>search</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

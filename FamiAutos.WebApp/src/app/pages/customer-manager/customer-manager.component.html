@@ -23,3 +23,9 @@
     </div>
 </ng-container>
 
+<ng-container *ngIf="showDashboard">
+    <div class="dashboard">
+        <app-dashboard-customer [customerSelected]="customerSelected"></app-dashboard-customer>
+    </div>
+</ng-container>
+

@@ -11,6 +11,8 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 export class CustomerManagerComponent implements OnInit {
   showSearchForm:boolean = false;
   showAddForm:boolean = false;
+  showDashboard:boolean = false;
+  customerSelected!:Customer;
 
   constructor() { }
 
@@ -20,7 +22,8 @@ export class CustomerManagerComponent implements OnInit {
 
   customerFound(customer : Customer) : void {
     console.log('Se encontró el cliente: ' + JSON.stringify(customer));
-    this.openSearchForm();
+    this.customerSelected = customer;
+    this.openDashboard();
   }
 
   customerRegistered(isSuccess : boolean) : void {
@@ -34,12 +37,28 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showAddForm){
       this.showAddForm = !this.showAddForm;
     }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
+    }
   }
 
   openAddForm():void{
     this.showAddForm = !this.showAddForm;
     if(this.showSearchForm){
       this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
+    }
+  }
+
+  openDashboard(): void{
+    this.showDashboard = !this.showDashboard;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
     }
   }
 
