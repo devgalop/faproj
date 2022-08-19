@@ -1,0 +1,22 @@
+<label class="search-title">Selecciona el tipo de busqueda:</label>
+<mat-radio-group aria-label="Selecciona el tipo de busqueda:" [(ngModel)]="searchType">
+    <mat-radio-button class="rbtn" value="Email">Email</mat-radio-button>
+    <mat-radio-button class="rbtn" value="Nit">Nit</mat-radio-button>
+    <mat-radio-button class="rbtn" value="Placa" checked>Placa del Auto</mat-radio-button>
+</mat-radio-group>
+
+<div class="search-form">
+    <form (ngSubmit)="searchCustomer()" [formGroup]="searchCustomerForm">
+        <mat-form-field class="form-element form-element-text" appearance="legacy">
+            <mat-label>Busqueda por: {{searchType}}</mat-label>
+            <input matInput placeholder="{{searchType}}" required formControlName="searchText">
+        </mat-form-field>
+        <button type="submit" 
+            mat-flat-button 
+            class="btn form-element search-btn"
+            [disabled]="searchCustomerForm.invalid">
+        <mat-icon>search</mat-icon>
+        Buscar
+    </button>
+    </form>
+</div>

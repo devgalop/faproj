@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.pages = [
       { name: 'Reporte Ingresos/Egresos', description: 'Este módulo es el encargado de realizar la gestión de los ingresos y egresos de la compañía.', route: 'accounting', imageUrl: 'apps'},
-      { name: 'Clientes', description: 'Este módulo se encarga de la administración de los clientes', route: 'home', imageUrl: 'group'},
+      { name: 'Clientes', description: 'Este módulo se encarga de la administración de los clientes', route: 'customer-manager', imageUrl: 'group'},
       { name: 'Facturación', description: 'Este módulo se encarga de la gestión de facturación.', route: 'home', imageUrl: 'money'}
     ]
   }
