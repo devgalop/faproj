@@ -30,7 +30,7 @@ public class CustomerController : ControllerBase
         try
         {
             _logger.LogInformation("Inicia método para registrar un nuevo cliente");
-            if(string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Nit)) throw new ArgumentException("Invalid Model");
+            if(string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Nit)) throw new ArgumentException("Invalid Model");
             Customer? customerFound = await _customerRepository.GetCustomerByNit(model.Nit);
             if(customerFound != null) throw new ArgumentException($"El cliente con Nit {model.Nit} ya se encuentra registrado en la base de datos");
             customerFound = await _customerRepository.GetCustomerByEmail(model.Email);

@@ -38,8 +38,8 @@ export class RegisterCustomerComponent implements OnInit {
     return this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
       nit: [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      cellphone: ['', []],
-      email: ['', [Validators.required, Validators.email]],
+      cellphone: ['', [Validators.minLength(7),Validators.maxLength(13)]],
+      email: ['', [Validators.email]],
       address: ['', []]
     })
   }

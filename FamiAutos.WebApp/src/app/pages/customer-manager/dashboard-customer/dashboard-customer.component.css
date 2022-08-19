@@ -16,10 +16,13 @@
     color:#A2B5BB;
 }
 
+.btn{
+    margin: 15px;
+}
+
 .btn-search{
     background-color: #A2B5BB;
     color:white;
-    margin: 15px;
 }
 
 .btn-search:hover{
