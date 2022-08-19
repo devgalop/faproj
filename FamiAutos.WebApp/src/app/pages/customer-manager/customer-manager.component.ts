@@ -9,12 +9,21 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
   styleUrls: ['./customer-manager.component.css']
 })
 export class CustomerManagerComponent implements OnInit {
-  showSearchForm:boolean = true;
+  showSearchForm:boolean = false;
 
-  constructor(private readonly _customerSvc : CustomerService) { }
+  constructor() { }
 
   ngOnInit(): void {
     
+  }
+
+  customerFound(customer : Customer) : void {
+    console.log('Se encontró el cliente: ' + JSON.stringify(customer));
+    this.openSearchForm();
+  }
+
+  openSearchForm():void{
+    this.showSearchForm = !this.showSearchForm
   }
 
 }

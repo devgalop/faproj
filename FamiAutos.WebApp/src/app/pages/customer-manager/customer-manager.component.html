@@ -1,6 +1,19 @@
+<ng-container >
+    <div class="menu-container">
+        <button class="btn add-btn">
+            <mat-icon>library_add</mat-icon>
+            Nuevo Cliente
+        </button>
+        <button class="btn report-btn" (click)="openSearchForm()">
+            <mat-icon>search</mat-icon>
+            Consultar Cliente
+        </button>
+    </div>
+</ng-container>
+
 <ng-container *ngIf="showSearchForm">
     <div class="search-form">
-        <app-search-customer></app-search-customer>
+        <app-search-customer (searchCustomerClick) = "customerFound($event)"></app-search-customer>
     </div>
 </ng-container>
 
