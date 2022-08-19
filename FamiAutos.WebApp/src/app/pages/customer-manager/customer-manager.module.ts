@@ -8,11 +8,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchCustomerComponent } from './search-customer/search-customer.component';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { DashboardCustomerComponent } from './dashboard-customer/dashboard-customer.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 
 
 @NgModule({
   declarations: [
     CustomerManagerComponent,
+    RegisterCustomerComponent,
     SearchCustomerComponent,
     UpdateCustomerComponent,
     DashboardCustomerComponent

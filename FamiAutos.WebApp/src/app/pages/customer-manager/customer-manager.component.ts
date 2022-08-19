@@ -10,6 +10,7 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 })
 export class CustomerManagerComponent implements OnInit {
   showSearchForm:boolean = false;
+  showAddForm:boolean = false;
 
   constructor() { }
 
@@ -22,8 +23,24 @@ export class CustomerManagerComponent implements OnInit {
     this.openSearchForm();
   }
 
+  customerRegistered(isSuccess : boolean) : void {
+    if(isSuccess){
+      this.openAddForm();
+    }
+  }
+
   openSearchForm():void{
-    this.showSearchForm = !this.showSearchForm
+    this.showSearchForm = !this.showSearchForm;
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+  }
+
+  openAddForm():void{
+    this.showAddForm = !this.showAddForm;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
   }
 
 }

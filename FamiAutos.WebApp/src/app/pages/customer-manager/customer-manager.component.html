@@ -1,6 +1,6 @@
 <ng-container >
     <div class="menu-container">
-        <button class="btn add-btn">
+        <button class="btn add-btn" (click)="openAddForm()">
             <mat-icon>library_add</mat-icon>
             Nuevo Cliente
         </button>
@@ -8,6 +8,12 @@
             <mat-icon>search</mat-icon>
             Consultar Cliente
         </button>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showAddForm">
+    <div class="add-form">
+        <app-register-customer (customerRegisteredClick)="customerRegistered($event)"></app-register-customer>
     </div>
 </ng-container>
 
