@@ -70,10 +70,29 @@ public class CustomerController : ControllerBase
     public async Task<IActionResult> GetCustomerByNit(string nit){
         try
         {
-            _logger.LogInformation($"Buscará el cliente que coincida con el email: {nit}");
-            if(string.IsNullOrEmpty(nit)) throw new ArgumentException("Email invalido");
+            _logger.LogInformation($"Buscará el cliente que coincida con el nit: {nit}");
+            if(string.IsNullOrEmpty(nit)) throw new ArgumentException("NIT invalido");
             Customer? customerFound = await _customerRepository.GetCustomerByNit(nit);
-            if(customerFound == null) return NotFound($"El cliente con email {nit} NO existe en la base de datos");
+            if(customerFound == null) return NotFound($"El cliente con nit {nit} NO existe en la base de datos");
+            CustomerModel customer = _mapperHelper.ConvertTo<CustomerModel, Customer?>(customerFound);
+            _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customer)}");
+            return Ok(customer);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex,"Error en la ejecución");
+            return BadRequest(ex);
+        }
+    }
+
+    [HttpGet("GetCustomerByCarPlaque/{plaque}")]
+    public async Task<IActionResult> GetCustomerByCarPlaque(string plaque){
+        try
+        {
+            _logger.LogInformation($"Buscará el cliente que coincida con la placa del auto: {plaque}");
+            if(string.IsNullOrEmpty(plaque)) throw new ArgumentException("Placa invalida");
+            Customer? customerFound = await _customerRepository.GetCustomerByCarPlaque(plaque);
+            if(customerFound == null) return NotFound($"No existe ningun cliente asociado al auto {plaque}");
             CustomerModel customer = _mapperHelper.ConvertTo<CustomerModel, Customer?>(customerFound);
             _logger.LogInformation($"Se ha encontrado el cliente: {JsonConvert.SerializeObject(customer)}");
             return Ok(customer);

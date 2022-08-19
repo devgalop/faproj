@@ -8,6 +8,7 @@ public interface ICustomerRepository
     Task<Customer?> GetCustomer(int id);
     Task<Customer?> GetCustomerByNit(string nit);
     Task<Customer?> GetCustomerByEmail(string email);
+    Task<Customer?> GetCustomerByCarPlaque(string plaque);
     Task UpdateCustomer(Customer customer);
     Task DeleteCustomer(Customer customer);
 }

@@ -38,6 +38,18 @@ public class CustomerRepository : ICustomerRepository
                                     .FirstOrDefaultAsync();
     }
 
+    public async Task<Customer?> GetCustomerByCarPlaque(string plaque)
+    {
+        return await _dataContext.Customers
+                                    .Join(_dataContext.Cars,
+                                        customer => customer.Id,
+                                        cars => cars.OwnerId,
+                                        (customer, cars) => new {Customer = customer, Cars = cars}
+                                    ).Where(car => car.Cars.Plaque == plaque)
+                                    .Select(result => result.Customer)
+                                    .FirstOrDefaultAsync();
+    }
+
     public async Task UpdateCustomer(Customer customer){
         _dataContext.Customers.Update(customer);
         await _dataContext.SaveChangesAsync();
