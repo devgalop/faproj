@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
 import { Customer } from 'src/app/shared/interfaces/customer/customer.interface';
 import { CustomerService } from 'src/app/shared/services/customer.service';
@@ -33,6 +34,12 @@ export class CustomerManagerComponent implements OnInit {
     }
   }
 
+  customerUpdated(customer : Customer) : void {
+    console.log('Cliente actualizado '+ JSON.stringify(customer));
+    this.customerSelected = customer;
+    this.openDashboard();
+  }
+
   updateCustomer(customer: Customer) : void {
     console.log('Actualizar cliente: '+ JSON.stringify(customer));
     this.openUpdateForm();
@@ -46,6 +53,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showDashboard){
       this.showDashboard = !this.showDashboard;
     }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
+    }
   }
 
   openAddForm():void{
@@ -56,6 +66,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showDashboard){
       this.showDashboard = !this.showDashboard;
     }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
+    }
   }
 
   openDashboard(): void{
@@ -65,6 +78,9 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showAddForm){
       this.showAddForm = !this.showAddForm;
+    }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
     }
   }
 

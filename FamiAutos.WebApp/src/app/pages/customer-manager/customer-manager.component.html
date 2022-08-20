@@ -32,6 +32,7 @@
 
 <ng-container *ngIf="showUpdateForm">
     <div class="search-form">
-        <app-update-customer [customerSelected]="customerSelected"></app-update-customer>
+        <app-update-customer [customerSelected]="customerSelected"
+                            (customerUpdatedClick) = "customerUpdated($event)"></app-update-customer>
     </div>
 </ng-container>

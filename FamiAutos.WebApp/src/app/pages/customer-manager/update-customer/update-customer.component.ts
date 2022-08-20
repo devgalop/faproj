@@ -32,15 +32,20 @@ export class UpdateCustomerComponent implements OnInit {
       Address: this.updateCustomerForm.controls['address'].value
     }
     console.log('Objeto de cliente a actualizar '+ JSON.stringify(this.customerToBeUpdated));
-    this._customerService.updateCustomer(this.customerToBeUpdated).subscribe();
-    this._customerService.getCustomerByNit(this.customerSelected.nit)
+    this._customerService.updateCustomer(this.customerToBeUpdated)
     .pipe(
-      tap( (customer : Customer) => {
-        this.customerUpdated = customer;
-        console.log(this.customerUpdated);
-        this.customerUpdatedClick.emit(this.customerUpdated);
+      tap(()=>{
+        this._customerService.getCustomerByNit(this.customerSelected.nit)
+            .pipe(
+              tap( (customer : Customer) => {
+                this.customerUpdated = customer;
+                console.log(this.customerUpdated);
+                this.customerUpdatedClick.emit(this.customerUpdated);
+              })
+            ).subscribe();
       })
-    ).subscribe();
+    )
+    .subscribe();
   }
 
   initForm():FormGroup {
