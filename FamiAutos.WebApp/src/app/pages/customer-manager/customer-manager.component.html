@@ -1,4 +1,4 @@
-<ng-container >
+<ng-container>
     <div class="menu-container">
         <button class="btn add-btn" (click)="openAddForm()">
             <mat-icon>library_add</mat-icon>
@@ -19,13 +19,19 @@
 
 <ng-container *ngIf="showSearchForm">
     <div class="search-form">
-        <app-search-customer (searchCustomerClick) = "customerFound($event)"></app-search-customer>
+        <app-search-customer (searchCustomerClick)="customerFound($event)"></app-search-customer>
     </div>
 </ng-container>
 
 <ng-container *ngIf="showDashboard">
     <div class="dashboard">
-        <app-dashboard-customer [customerSelected]="customerSelected"></app-dashboard-customer>
+        <app-dashboard-customer [customerSelected]="customerSelected" (updateCustomerClick)="updateCustomer($event)">
+        </app-dashboard-customer>
     </div>
 </ng-container>
 
+<ng-container *ngIf="showUpdateForm">
+    <div class="search-form">
+        <app-update-customer [customerSelected]="customerSelected"></app-update-customer>
+    </div>
+</ng-container>

@@ -23,11 +23,11 @@
         <mat-label>Direccion:</mat-label>
         <input matInput placeholder="ej. Calle 1 # 2 - 3" [(ngModel)]="customerSelected.address" disabled>
     </mat-form-field>
-    <button mat-flat-button class="btn btn-warning">
+    <button mat-flat-button class="btn btn-warning" (click)="updateCustomer()">
         <mat-icon>build</mat-icon>
         Actualizar Usuario
     </button>
-    <button mat-flat-button class="btn btn-success">
+    <button mat-flat-button class="btn btn-success" (click)="assignCarToCustomer()">
         <mat-icon>library_add</mat-icon>
         Asignar Nuevo Auto
     </button>

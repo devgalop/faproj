@@ -1,0 +1,37 @@
+<div class="title">
+    <span>Actualizar Datos del Cliente:</span>
+</div>
+
+<form (ngSubmit)="updateCustomer()" [formGroup]="updateCustomerForm">
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Id:</mat-label>
+        <input matInput placeholder="Id" required formControlName="id">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Nombre:</mat-label>
+        <input matInput placeholder="Nombre" required formControlName="name">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Nit/Cedula:</mat-label>
+        <input matInput placeholder="Nit" required formControlName="nit">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Email:</mat-label>
+        <input matInput placeholder="ej. correo@prueba.com" formControlName="email" >
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Celular:</mat-label>
+        <input matInput placeholder="ej. 3023339910" formControlName="cellphone">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Direccion:</mat-label>
+        <input matInput placeholder="ej. Calle 1 # 2 - 3" formControlName="address">
+    </mat-form-field>
+    <button type="submit" 
+            mat-flat-button 
+            class="btn form-element save-btn"
+            [disabled]="updateCustomerForm.invalid">
+        <mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</form>

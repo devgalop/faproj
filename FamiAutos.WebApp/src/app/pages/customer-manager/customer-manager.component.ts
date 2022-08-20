@@ -12,6 +12,7 @@ export class CustomerManagerComponent implements OnInit {
   showSearchForm:boolean = false;
   showAddForm:boolean = false;
   showDashboard:boolean = false;
+  showUpdateForm:boolean = false;
   customerSelected!:Customer;
 
   constructor() { }
@@ -30,6 +31,11 @@ export class CustomerManagerComponent implements OnInit {
     if(isSuccess){
       this.openAddForm();
     }
+  }
+
+  updateCustomer(customer: Customer) : void {
+    console.log('Actualizar cliente: '+ JSON.stringify(customer));
+    this.openUpdateForm();
   }
 
   openSearchForm():void{
@@ -59,6 +65,19 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showAddForm){
       this.showAddForm = !this.showAddForm;
+    }
+  }
+
+  openUpdateForm(): void{
+    this.showUpdateForm = !this.showUpdateForm;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
     }
   }
 
