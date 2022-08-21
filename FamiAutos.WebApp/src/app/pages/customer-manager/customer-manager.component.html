@@ -25,7 +25,10 @@
 
 <ng-container *ngIf="showDashboard">
     <div class="dashboard">
-        <app-dashboard-customer [customerSelected]="customerSelected" (updateCustomerClick)="updateCustomer($event)">
+        <app-dashboard-customer [customerSelected]="customerSelected" 
+                                (updateCustomerClick)="updateCustomer($event)"
+                                (assignCarToCustomerClick)="assignCarToCustomer($event)"
+                                (showCarViewClick)="showCarView($event)">
         </app-dashboard-customer>
     </div>
 </ng-container>
@@ -34,5 +37,19 @@
     <div class="search-form">
         <app-update-customer [customerSelected]="customerSelected"
                             (customerUpdatedClick) = "customerUpdated($event)"></app-update-customer>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showAddCarForm">
+    <div class="search-form">
+        <app-register-car [customerSelected]="customerSelected"
+                        (customerUpdatedClick) = "carAddedToCustomer($event)">
+        </app-register-car>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showCarDashboard">
+    <div class="dashboard">
+        <app-dashboard-car [carSelected]="carSelected"></app-dashboard-car>
     </div>
 </ng-container>

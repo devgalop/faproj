@@ -9,6 +9,9 @@ import { SearchCustomerComponent } from './search-customer/search-customer.compo
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { DashboardCustomerComponent } from './dashboard-customer/dashboard-customer.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { RegisterCarComponent } from './register-car/register-car.component';
+import { UpdateCarComponent } from './update-car/update-car.component';
+import { DashboardCarComponent } from './dashboard-car/dashboard-car.component';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
     RegisterCustomerComponent,
     SearchCustomerComponent,
     UpdateCustomerComponent,
-    DashboardCustomerComponent
+    DashboardCustomerComponent,
+    RegisterCarComponent,
+    UpdateCarComponent,
+    DashboardCarComponent
   ],
   imports: [
     CommonModule,

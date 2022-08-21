@@ -1,0 +1,51 @@
+<div class="title">
+    <span>Datos del Auto:</span>
+</div>
+
+<div class="car-info">
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Placa:</mat-label>
+        <input matInput placeholder="ej. ABC123" [(ngModel)]="carSelected.plaque" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Modelo:</mat-label>
+        <input matInput placeholder="ej. 2014" [(ngModel)]="carSelected.model" disabled>
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Marca:</mat-label>
+        <input matInput placeholder="ej. Toyota" [(ngModel)]="carSelected.brand" disabled>
+    </mat-form-field>
+    <button mat-flat-button class="btn btn-warning">
+        <mat-icon>build</mat-icon>
+        Actualizar Auto
+    </button>
+</div>
+
+<div class="title">
+    <span>Revisiones:</span>
+</div>
+
+<div class="table">
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let column of displayedColumns">{{column}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-data" *ngFor="let row of carSelected.revisions ">
+                <td>{{row.description}}</td>
+                <td>{{row.createdAt | date: 'dd/MM/yyyy'}}</td>
+                <td>{{row.guaranteeMonths}}</td>
+                <td>
+                    <button mat-flat-button class="btn btn-warning">
+                        <mat-icon>build</mat-icon>
+                    </button>
+                    <button mat-flat-button class="btn btn-danger">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

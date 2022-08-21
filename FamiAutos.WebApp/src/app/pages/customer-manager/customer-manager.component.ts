@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { Car } from 'src/app/shared/interfaces/car/car.interface';
 import { Customer } from 'src/app/shared/interfaces/customer/customer.interface';
-import { CustomerService } from 'src/app/shared/services/customer.service';
 
 @Component({
   selector: 'app-customer-manager',
@@ -12,9 +10,12 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 export class CustomerManagerComponent implements OnInit {
   showSearchForm:boolean = false;
   showAddForm:boolean = false;
+  showAddCarForm:boolean = false;
   showDashboard:boolean = false;
+  showCarDashboard:boolean = false;
   showUpdateForm:boolean = false;
   customerSelected!:Customer;
+  carSelected!:Car;
 
   constructor() { }
 
@@ -45,6 +46,21 @@ export class CustomerManagerComponent implements OnInit {
     this.openUpdateForm();
   }
 
+  assignCarToCustomer(customer: Customer) : void {
+    this.openAddCarForm();
+  }
+
+  carAddedToCustomer(customer: Customer): void {
+    console.log('Cliente actualizado '+ JSON.stringify(customer));
+    this.customerSelected = customer;
+    this.openDashboard();
+  }
+
+  showCarView(carSelected : Car): void {
+    this.carSelected = carSelected;
+    this.openCarDashboard();
+  }
+
   openSearchForm():void{
     this.showSearchForm = !this.showSearchForm;
     if(this.showAddForm){
@@ -55,6 +71,12 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showUpdateForm){
       this.showUpdateForm = !this.showUpdateForm;
+    }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
     }
   }
 
@@ -69,6 +91,12 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showUpdateForm){
       this.showUpdateForm = !this.showUpdateForm;
     }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
+    }
   }
 
   openDashboard(): void{
@@ -82,6 +110,12 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showUpdateForm){
       this.showUpdateForm = !this.showUpdateForm;
     }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
+    }
   }
 
   openUpdateForm(): void{
@@ -94,6 +128,50 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showDashboard){
       this.showDashboard = !this.showDashboard;
+    }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
+    }
+  }
+
+  openAddCarForm():void{
+    this.showAddCarForm = !this.showAddCarForm;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
+    }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
+    }
+  }
+
+  openCarDashboard():void{
+    this.showCarDashboard = !this.showCarDashboard;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
+    }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
+    }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
     }
   }
 

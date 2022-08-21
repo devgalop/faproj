@@ -1,0 +1,36 @@
+.form-element{
+    margin: 10px;
+    background-color:#F5EDDC
+}
+
+.title{
+    font-size: 20px;
+    font-weight: bold;
+    margin:16px;
+    color:#A2B5BB;
+    border-bottom: 1px solid;
+}
+
+.car-info{
+    margin-bottom: 25px;
+    color:#A2B5BB;
+}
+
+.btn{
+    margin: 10px;
+}
+
+.btn-search{
+    background-color: #A2B5BB;
+    color:white;
+}
+
+.btn-search:hover{
+    background-color: #CFD2CF;
+    color: black;
+    border-color: #A2B5BB;
+}
+
+table{ 
+    width: 99%;
+}

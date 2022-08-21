@@ -46,7 +46,7 @@
                 <td>{{row.model}}</td>
                 <td>{{row.brand}}</td>
                 <td>
-                    <button mat-flat-button class="btn btn-search" >
+                    <button mat-flat-button class="btn btn-search" (click)="showCarView(row)">
                         <mat-icon>search</mat-icon>
                     </button>
                 </td>
