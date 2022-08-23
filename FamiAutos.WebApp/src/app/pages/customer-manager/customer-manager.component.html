@@ -50,6 +50,16 @@
 
 <ng-container *ngIf="showCarDashboard">
     <div class="dashboard">
-        <app-dashboard-car [carSelected]="carSelected"></app-dashboard-car>
+        <app-dashboard-car [carSelected]="carSelected"
+                            (updateCarClick) = "updateCar($event)"
+                            (reparationDeletedClick)="reparationDeleted($event)"></app-dashboard-car>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="showUpdateCarForm">
+    <div class="search-form">
+        <app-update-car [carSelected]="carSelected"
+                        (carUpdatedClick) = "carUpdated($event)">
+        </app-update-car>
     </div>
 </ng-container>

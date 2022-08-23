@@ -123,9 +123,13 @@ public class ReparationController : ControllerBase
             if(id <= 0) throw new ArgumentOutOfRangeException("Id invalido");
             Reparation? reparationFound = await _reparationRepository.GetReparation(id);
             if(reparationFound == null) return NotFound($"La reparacion con id {id} NO existe en la base de datos");
+            string carPlaqueSelected = reparationFound.Car.Plaque;
             await _reparationRepository.DeleteReparation(reparationFound);
+            Car? carFound = await _carRepository.GetCar(carPlaqueSelected);
+            if(carFound == null) return NotFound($"El auto no existe en la base de datos");
+            CarModel car = _mapperHelper.ConvertTo<CarModel,Car>(carFound);
             _logger.LogInformation($"Se ha eliminado la reparacion satisfactoriamente");
-            return Ok("Se ha eliminado la reparacion satisfactoriamente");
+            return Ok(car);
         }
         catch (Exception ex)
         {

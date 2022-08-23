@@ -15,9 +15,13 @@
         <mat-label>Marca:</mat-label>
         <input matInput placeholder="ej. Toyota" [(ngModel)]="carSelected.brand" disabled>
     </mat-form-field>
-    <button mat-flat-button class="btn btn-warning">
+    <button mat-flat-button class="btn btn-warning" (click)="updateCar()">
         <mat-icon>build</mat-icon>
         Actualizar Auto
+    </button>
+    <button mat-flat-button class="btn btn-success">
+        <mat-icon>library_add</mat-icon>
+        Agregar Revisión
     </button>
 </div>
 
@@ -41,7 +45,7 @@
                     <button mat-flat-button class="btn btn-warning">
                         <mat-icon>build</mat-icon>
                     </button>
-                    <button mat-flat-button class="btn btn-danger">
+                    <button mat-flat-button class="btn btn-danger" (click)="deleteReparation(row)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </td>

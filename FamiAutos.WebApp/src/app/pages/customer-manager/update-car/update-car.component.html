@@ -1,1 +1,21 @@
-<p>update-car works!</p>
+<div class="title">
+    <span>Actualizar Auto {{carSelected.plaque}}:</span>
+</div>
+
+<form (ngSubmit)="updateCar()" [formGroup]="updateCarForm">
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Modelo:</mat-label>
+        <input matInput placeholder="ej. 2014" formControlName="model">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy">
+        <mat-label>Marca:</mat-label>
+        <input matInput placeholder="ej. Toyota" formControlName="brand">
+    </mat-form-field>
+    <button type="submit" 
+            mat-flat-button 
+            class="btn form-element save-btn"
+            [disabled]="updateCarForm.invalid">
+        <mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</form>
