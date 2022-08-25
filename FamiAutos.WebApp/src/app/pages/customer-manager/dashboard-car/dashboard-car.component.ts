@@ -13,6 +13,7 @@ import { ReparationService } from 'src/app/shared/services/reparation.service';
 export class DashboardCarComponent implements OnInit {
   displayedColumns: string[] = ['Descripcion', 'Fecha Revisión' ,'Garantia (Meses)'];
   @Input() carSelected!:Car;
+  @Output() addReparationToCarClick = new EventEmitter<Car>();
   @Output() updateCarClick = new EventEmitter<Car>();
   @Output() reparationDeletedClick = new EventEmitter<Car>();
 
@@ -24,6 +25,11 @@ export class DashboardCarComponent implements OnInit {
 
   updateCar(): void{
     this.updateCarClick.emit(this.carSelected);
+  }
+
+  addCarReparation():void{
+    console.log('Agregar Reparacion al auto: '+ JSON.stringify(this.carSelected));
+    this.addReparationToCarClick.emit(this.carSelected);
   }
 
   modifyCarRevision(revision : Reparation): void {

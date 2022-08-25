@@ -12,6 +12,8 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
 import { RegisterCarComponent } from './register-car/register-car.component';
 import { UpdateCarComponent } from './update-car/update-car.component';
 import { DashboardCarComponent } from './dashboard-car/dashboard-car.component';
+import { AddReparationComponent } from './add-reparation/add-reparation.component';
+import { UpdateReparationComponent } from './update-reparation/update-reparation.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { DashboardCarComponent } from './dashboard-car/dashboard-car.component';
     DashboardCustomerComponent,
     RegisterCarComponent,
     UpdateCarComponent,
-    DashboardCarComponent
+    DashboardCarComponent,
+    AddReparationComponent,
+    UpdateReparationComponent
   ],
   imports: [
     CommonModule,

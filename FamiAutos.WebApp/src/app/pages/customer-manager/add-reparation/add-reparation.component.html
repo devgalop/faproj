@@ -1,0 +1,27 @@
+<div class="title">
+    <span>Agregar reparación para el auto - {{carSelected.plaque}}: </span>
+</div>
+
+<form (ngSubmit)="addReparation()" [formGroup]="addReparationForm">
+    <mat-form-field class="form-element datepicker" appearance="legacy">
+        <mat-label>Seleccione la fecha</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" required formControlName="datePicked">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="form-element form-element-text" appearance="legacy">
+        <mat-label>Detalles de la reparación</mat-label>
+        <input matInput placeholder="Descripcion" required formControlName="description">
+    </mat-form-field>
+    <mat-form-field class="form-element" appearance="legacy" floatLabel="always">
+        <mat-label>Meses de garantía</mat-label>
+        <input matInput type="number" class="" placeholder="0" required formControlName="guarantee">
+    </mat-form-field>
+    <button type="submit" 
+            mat-flat-button 
+            class="btn form-element save-btn"
+            [disabled]="addReparationForm.invalid">
+        <mat-icon>save</mat-icon>
+        Guardar
+    </button>
+</form>
