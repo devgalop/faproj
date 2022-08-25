@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Car } from 'src/app/shared/interfaces/car/car.interface';
 import { Customer } from 'src/app/shared/interfaces/customer/customer.interface';
+import { Reparation } from 'src/app/shared/interfaces/reparation/reparation.interface';
 
 @Component({
   selector: 'app-customer-manager',
@@ -16,8 +17,10 @@ export class CustomerManagerComponent implements OnInit {
   showCarDashboard:boolean = false;
   showUpdateForm:boolean = false;
   showUpdateCarForm:boolean = false;
+  showUpdateReparationForm:boolean = false;
   customerSelected!:Customer;
   carSelected!:Car;
+  reparationSelected!:Reparation;
 
   constructor() { }
 
@@ -65,6 +68,11 @@ export class CustomerManagerComponent implements OnInit {
     this.openCarDashboard();
   }
 
+  updateReparation(reparation : Reparation){
+    this.reparationSelected =reparation;
+    this.openUpdateReparationForm();
+  }
+
   assignCarToCustomer(customer: Customer) : void {
     this.openAddCarForm();
   }
@@ -107,6 +115,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
     }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    }
   }
 
   openAddForm():void{
@@ -131,6 +142,9 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
+    }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
     }
   }
 
@@ -157,6 +171,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
     }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    }
   }
 
   openUpdateForm(): void{
@@ -181,6 +198,9 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
+    }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
     }
   }
 
@@ -207,6 +227,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
     }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    }
   }
 
   openCarDashboard():void{
@@ -231,6 +254,9 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
+    }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
     }
   }
 
@@ -257,6 +283,9 @@ export class CustomerManagerComponent implements OnInit {
     if(this.showAddReparationForm){
       this.showAddReparationForm = !this.showAddReparationForm;
     }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    }
   }
 
   openAddReparationForm():void{
@@ -281,6 +310,37 @@ export class CustomerManagerComponent implements OnInit {
     }
     if(this.showUpdateCarForm){
       this.showUpdateCarForm = !this.showUpdateCarForm;
+    }
+    if(this.showUpdateReparationForm){
+      this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    }
+  }
+
+  openUpdateReparationForm():void{
+    this.showUpdateReparationForm = !this.showUpdateReparationForm;
+    if(this.showSearchForm){
+      this.showSearchForm = !this.showSearchForm;
+    }
+    if(this.showAddForm){
+      this.showAddForm = !this.showAddForm;
+    }
+    if(this.showDashboard){
+      this.showDashboard = !this.showDashboard;
+    }
+    if(this.showUpdateForm){
+      this.showUpdateForm = !this.showUpdateForm;
+    }
+    if(this.showAddCarForm){
+      this.showAddCarForm = !this.showAddCarForm;
+    }
+    if(this.showCarDashboard){
+      this.showCarDashboard = !this.showCarDashboard;
+    }
+    if(this.showUpdateCarForm){
+      this.showUpdateCarForm = !this.showUpdateCarForm;
+    }
+    if(this.showAddReparationForm){
+      this.showAddReparationForm = !this.showAddReparationForm;
     }
   }
 

@@ -16,9 +16,9 @@ export class DashboardCarComponent implements OnInit {
   @Output() addReparationToCarClick = new EventEmitter<Car>();
   @Output() updateCarClick = new EventEmitter<Car>();
   @Output() reparationDeletedClick = new EventEmitter<Car>();
+  @Output() modifyReparationClick = new EventEmitter<Reparation>();
 
-  constructor(private readonly _reparationSvc : ReparationService,
-              private readonly _carSvc : CarService) { }
+  constructor(private readonly _reparationSvc : ReparationService) { }
 
   ngOnInit(): void {
   }
@@ -33,7 +33,7 @@ export class DashboardCarComponent implements OnInit {
   }
 
   modifyCarRevision(revision : Reparation): void {
-
+    this.modifyReparationClick.emit(revision);
   }
 
   deleteReparation(reparation : Reparation): void {

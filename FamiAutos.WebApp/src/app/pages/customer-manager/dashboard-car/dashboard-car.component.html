@@ -42,7 +42,7 @@
                 <td>{{row.createdAt | date: 'dd/MM/yyyy'}}</td>
                 <td>{{row.guaranteeMonths}}</td>
                 <td>
-                    <button mat-flat-button class="btn btn-warning">
+                    <button mat-flat-button class="btn btn-warning" (click)="modifyCarRevision(row)">
                         <mat-icon>build</mat-icon>
                     </button>
                     <button mat-flat-button class="btn btn-danger" (click)="deleteReparation(row)">
