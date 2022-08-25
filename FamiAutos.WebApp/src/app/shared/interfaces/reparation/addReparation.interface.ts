@@ -1,6 +1,6 @@
 export interface AddReparation{
     Description: string;
-    CreatedAt: string;
+    CreatedAt: Date;
     GuaranteeMonths: number;
     CarPlaque: string;
 }
