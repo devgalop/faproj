@@ -158,8 +158,9 @@ public class AccountingController : ControllerBase
             if(flowFound == null) return NotFound("Ingreso/Egreso no encontrado. Por favor valide e intente nuevamente.");
             _logger.LogInformation($"Objeto encontrado: \n {JsonConvert.SerializeObject(flowFound)}");
             await _repository.DeleteMoneyFlow(flowFound);
+            IEnumerable<MoneyFlow> flowUpdated = await _repository.GetMoneyFlowsByMonth(flowFound.CreatedAt.Month);
             _logger.LogInformation("El Ingreso/Egreso ha sido eliminado de manera exitosa");
-            return Ok("El Ingreso/Egreso ha sido eliminado de manera exitosa");
+            return Ok(flowUpdated);
         }
         catch (Exception ex)
         {
