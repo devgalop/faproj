@@ -1,9 +1,5 @@
 <div class="form">
     <form  [formGroup]="updateForm">
-        <mat-form-field class="form-element " appearance="legacy">
-            <mat-label>Id</mat-label>
-            <input matInput placeholder="Id" formControlName="id">
-        </mat-form-field>
         <mat-form-field class="form-element datepicker" appearance="legacy">
             <mat-label>Seleccione la fecha</mat-label>
             <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY" formControlName="datePicked" required>

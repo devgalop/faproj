@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs';
+import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.interface';
 import { AddAccounting } from 'src/app/shared/interfaces/accounting/addAccounting.interface';
+import { AccountingService } from 'src/app/shared/services/accounting.service';
 
 @Component({
   selector: 'app-create-accounting',
@@ -8,13 +11,12 @@ import { AddAccounting } from 'src/app/shared/interfaces/accounting/addAccountin
   styleUrls: ['./create-accounting.component.css']
 })
 export class CreateAccountingComponent implements OnInit {
-  
   addAccounting!: AddAccounting;
   addForm!: FormGroup;
+  @Output() accountingAddedClick = new EventEmitter<Accounting[]>();
 
-  @Output() addAccountingClick = new EventEmitter<AddAccounting>();
-
-  constructor(private readonly _formBuilder : FormBuilder) 
+  constructor(private readonly _formBuilder : FormBuilder,
+              private readonly _accountingSvc : AccountingService) 
   { }
 
   ngOnInit(): void {
@@ -28,10 +30,19 @@ export class CreateAccountingComponent implements OnInit {
       FlowType: this.addForm.controls['accountingType'].value,
       Value: this.addForm.controls['value'].value
     }
-    console.log("Se guardara el nuevo registro de Ingresos/Egresos");
-    console.log(this.addAccounting);
     this.addForm = this.initForm();
-    this.addAccountingClick.emit(this.addAccounting);
+    this._accountingSvc.addAccountingFlow(this.addAccounting)
+        .pipe(
+          tap((accounting:Accounting) =>{
+            let monthSelected : number = this.addAccounting.CreatedAt.getMonth()+1;
+            this._accountingSvc.getAccountingByMonth(monthSelected)
+                .pipe(
+                  tap((accountingResult: Accounting[]) => {
+                    this.accountingAddedClick.emit(accountingResult);
+                  })
+                ).subscribe();
+          })
+        ).subscribe();
   }
 
   initForm():FormGroup {

@@ -14,7 +14,7 @@
 <ng-container>
     <div class="add-form">
         <ng-container *ngIf="showAddForm">
-            <app-create-accounting (addAccountingClick)="saveAccounting($event)"></app-create-accounting>
+            <app-create-accounting (accountingAddedClick)="saveAccounting($event)"></app-create-accounting>
         </ng-container>
     </div>
 
@@ -28,7 +28,8 @@
 <ng-container *ngIf="showDashboardTable">
     <div class="table-display">
         <app-dashboard-accounting [accountingRows]="existingAccounting" [total]="total"
-            (updateAccountingRowClick)="updateAccountingRow($event)">
+            (updateAccountingRowClick)="updateAccountingRow($event)"
+            (deleteAccountingRowClick)="accountingDeleted($event)">
         </app-dashboard-accounting>
     </div>
 </ng-container>

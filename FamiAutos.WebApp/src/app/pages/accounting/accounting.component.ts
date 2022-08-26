@@ -57,27 +57,44 @@ export class AccountingComponent implements OnInit {
     this.showDashboardTable = !this.showDashboardTable;
   }
 
-  saveAccounting(data : AddAccounting): void {
-    console.log("Se agregara a la BD el registro:");
-    console.log(data);
-    this._accountingSvc.addAccountingFlow(data).subscribe();
+  saveAccounting(data : Accounting[]): void {
+    this.existingAccounting = data;
+    console.log(this.existingAccounting);
+    this.total = this.existingAccounting.
+      reduce((accumulator, row) => {
+        return (row.flowType === 0) ? accumulator + row.value : accumulator - row.value 
+      }, 0);
     this.openAddForm();
-    //window.location.reload();
+    this.showTable();
   }
 
-  saveAccountingModifiedRow(data : Accounting):void{
-    console.log("Se modificará registro en BD:");
-    console.log(data);
-    this._accountingSvc.modifyAccountingFlow(data).subscribe();
+  saveAccountingModifiedRow(data : Accounting[]):void{
     this.openUpdateForm();
     this.showMainButtons();
-    //window.location.reload();
+    this.existingAccounting = data;
+    console.log(this.existingAccounting);
+    this.total = this.existingAccounting.
+      reduce((accumulator, row) => {
+        return (row.flowType === 0) ? accumulator + row.value : accumulator - row.value 
+      }, 0);
+    this.showTable();
   }
 
   updateAccountingRow(data : Accounting):void{
     console.log("Se actualizará el dato "+ JSON.stringify(data));
     this.accountingSelected = data;
     this.openUpdateForm();
+  }
+
+  accountingDeleted(data : Accounting[]):void{
+    this.showTable();
+    this.existingAccounting = data;
+    console.log(this.existingAccounting);
+    this.total = this.existingAccounting.
+      reduce((accumulator, row) => {
+        return (row.flowType === 0) ? accumulator + row.value : accumulator - row.value 
+      }, 0);
+    this.showTable();
   }
 
   cancelUpdateAccounting(isCancelled:boolean):void{

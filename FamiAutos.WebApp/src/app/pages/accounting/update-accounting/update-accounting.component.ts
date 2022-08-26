@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.interface';
 import { AccountingService } from 'src/app/shared/services/accounting.service';
 
@@ -10,30 +11,39 @@ import { AccountingService } from 'src/app/shared/services/accounting.service';
   styleUrls: ['./update-accounting.component.css']
 })
 export class UpdateAccountingComponent implements OnInit {
-
   @Input() actualAccounting!:Accounting;
-  @Output() saveAccountingModified = new EventEmitter<Accounting>();
+  @Output() saveAccountingModified = new EventEmitter<Accounting[]>();
   @Output() cancelUpdateAccounting = new EventEmitter<boolean>();
   accountingModified!:Accounting;
   updateForm!:FormGroup;
 
-  constructor(private readonly _formBuilder: FormBuilder){}
+  constructor(private readonly _formBuilder: FormBuilder,
+              private readonly _accountingSvc : AccountingService){}
 
   ngOnInit(): void {
     this.updateForm = this.initForm();
-    console.log("data seleccionada: " + JSON.stringify(this.actualAccounting));
   }
 
   updateAccounting():void{
     this.accountingModified = {
-      id: this.updateForm.controls['id'].value,
+      id: this.actualAccounting.id,
       description: this.updateForm.controls['description'].value,
       createdAt: this.updateForm.controls['datePicked'].value,
       flowType: this.updateForm.controls['accountingType'].value,
       value: this.updateForm.controls['value'].value
     }
-    console.log("modificado "+ JSON.stringify(this.accountingModified));
-    this.saveAccountingModified.emit(this.accountingModified);
+    this._accountingSvc.modifyAccountingFlow(this.accountingModified)
+        .pipe(
+          tap((accounting: Accounting)=>{
+            let monthSelected : number = new Date(this.actualAccounting.createdAt).getMonth()+1;
+            this._accountingSvc.getAccountingByMonth(monthSelected)
+                .pipe(
+                  tap((accountingResult: Accounting[]) => {
+                    this.saveAccountingModified.emit(accountingResult);
+                  })
+                ).subscribe();
+          })
+        ).subscribe();
   }
 
   cancelUpdate():void {
@@ -43,7 +53,6 @@ export class UpdateAccountingComponent implements OnInit {
 
   initForm():FormGroup {
     return this._formBuilder.group({
-      id:[this.actualAccounting.id, [Validators.required, Validators.minLength(1)]],
       datePicked: [this.actualAccounting.createdAt, [Validators.required]],
       description: [ this.actualAccounting.description, [Validators.required, Validators.minLength(3), Validators.maxLength(150)]],
       value: [this.actualAccounting.value, [Validators.required, Validators.min(100)]],

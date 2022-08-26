@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { Accounting } from 'src/app/shared/interfaces/accounting/accounting.interface';
 import { AccountingService } from 'src/app/shared/services/accounting.service';
 
@@ -14,9 +14,10 @@ export class DashboardAccountingComponent implements OnInit {
   @Input() accountingRows!:Accounting[]
   @Input() total!:number;
   @Output() updateAccountingRowClick = new EventEmitter<Accounting>();
+  @Output() deleteAccountingRowClick = new EventEmitter<Accounting[]>();
   displayedColumns= ['Fecha', 'Descripcion', 'Tipo', 'Valor', 'Acciones']
 
-  constructor(private readonly _accountingSvc : AccountingService, private readonly _router : Router) { }
+  constructor(private readonly _accountingSvc : AccountingService) { }
 
   ngOnInit(): void {
   }
@@ -29,9 +30,12 @@ export class DashboardAccountingComponent implements OnInit {
   OnDelete(data: Accounting): void {
     console.log('Eliminar objeto: ' + JSON.stringify(data));
     if (confirm('Esta seguro que desea elminar este registro?')) {
-      this._accountingSvc.deleteAccountingFlow(data.id).subscribe();
-      this._router.navigate(['home']);
-      //window.location.reload();
+      this._accountingSvc.deleteAccountingFlow(data.id)
+          .pipe(
+            tap((resultAccounting:Accounting[])=>{
+              this.deleteAccountingRowClick.emit(resultAccounting);
+            })
+          ).subscribe();
     }
   }
 
